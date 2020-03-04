@@ -5,10 +5,11 @@ using System.Text;
 
 namespace Alza.Api.Core.Repository
 {
-    public interface IRepository<T> where T : struct
+    public interface IRepository<T, K> where T : IEntity<K>
+                                       where K : struct
     {
-        ICollection<IEntity<T>> FindAll();
-        IEntity<T> FindById(T id);
-        void Remove(IEntity<T> entity);
+        ICollection<T> FindAll();
+        T FindById(K id);
+        void Remove(T entity);
     }
 }
