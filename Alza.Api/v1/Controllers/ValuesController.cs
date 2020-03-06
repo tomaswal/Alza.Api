@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Alza.Api.Controllers
+namespace Alza.Api.v1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
