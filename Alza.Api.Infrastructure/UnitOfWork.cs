@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Alza.Api.Infrastructure
 {
@@ -15,6 +16,11 @@ namespace Alza.Api.Infrastructure
         public void SaveChanges()
         {
             appDbContext.SaveChanges();
+        }
+
+        public Task SaveChangesAsync()
+        {
+            return appDbContext.SaveChangesAsync();
         }
     }
 }

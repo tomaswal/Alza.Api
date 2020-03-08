@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Alza.Api.Infrastructure.Repository
 {
@@ -11,6 +12,11 @@ namespace Alza.Api.Infrastructure.Repository
     {
         public void Add(Product entity)
         {
+        }
+
+        public Task AddAsync(Product entity)
+        {
+            return Task.CompletedTask;
         }
 
         public ICollection<Product> FindAll()
@@ -36,6 +42,14 @@ namespace Alza.Api.Infrastructure.Repository
             return result;
         }
 
+        public Task<List<Product>> FindAllAsync()
+        {
+            return Task.Run(() =>
+            {
+                return FindAll().ToList();
+            });
+        }
+
         public Product FindById(long id)
         {
             return new Product
@@ -46,6 +60,14 @@ namespace Alza.Api.Infrastructure.Repository
                 Name = "name1",
                 Price = 1.1M
             };
+        }
+
+        public Task<Product> FindByIdAsync(long id)
+        {
+            return Task.Run(() =>
+            {
+                return FindById(id);
+            });
         }
 
         public void Remove(Product entity)

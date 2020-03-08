@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Alza.Api.Core.Repository
 {
@@ -12,5 +13,9 @@ namespace Alza.Api.Core.Repository
         T FindById(K id);
         void Add(T entity);
         void Remove(T entity);
+
+        Task<List<T>> FindAllAsync();
+        Task<T> FindByIdAsync(K id);
+        Task AddAsync(T entity);
     }
 }
