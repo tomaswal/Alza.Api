@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Alza.Api.Core.BussinessRule;
 using Alza.Api.Core.Repository;
 using Alza.Api.Infrastructure;
 using Alza.Api.Infrastructure.Repository;
@@ -98,6 +99,7 @@ namespace Alza.Api
         private void RegisterAppClases(IServiceCollection services)
         {
             services.AddScoped<IProductRepository, FakeProductRepository>();
+            services.AddScoped<IProductFacade, ProductFacade>();
         }
     }
 }

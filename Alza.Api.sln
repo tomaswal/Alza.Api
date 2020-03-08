@@ -5,13 +5,15 @@ VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alza.Api", "Alza.Api\Alza.Api.csproj", "{B9ECD256-4408-4262-B5A2-2AB22B2929CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Api.Infrastructure", "Alza.Api.Infrastructure\Alza.Api.Infrastructure.csproj", "{B27E8B4F-0003-4F04-B40F-EB474262028E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alza.Api.Infrastructure", "Alza.Api.Infrastructure\Alza.Api.Infrastructure.csproj", "{B27E8B4F-0003-4F04-B40F-EB474262028E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Api.Core", "Alza.Api.Core\Alza.Api.Core.csproj", "{7442D495-1666-4F6A-80A4-806EEA5CE6D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alza.Api.Core", "Alza.Api.Core\Alza.Api.Core.csproj", "{7442D495-1666-4F6A-80A4-806EEA5CE6D7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{14B9B3F8-DD53-40BE-8CFB-74BA93DDCD9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Api.Core.Tests", "Alza.Api.Core.Tests\Alza.Api.Core.Tests.csproj", "{0FE9E140-0489-4613-9A49-43925E633E84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alza.Api.Core.Tests", "Alza.Api.Core.Tests\Alza.Api.Core.Tests.csproj", "{0FE9E140-0489-4613-9A49-43925E633E84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Helpers", "Alza.Helpers\Alza.Helpers.csproj", "{CF21E03D-664B-447B-B7D7-96C280D2B217}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{0FE9E140-0489-4613-9A49-43925E633E84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FE9E140-0489-4613-9A49-43925E633E84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FE9E140-0489-4613-9A49-43925E633E84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF21E03D-664B-447B-B7D7-96C280D2B217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF21E03D-664B-447B-B7D7-96C280D2B217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF21E03D-664B-447B-B7D7-96C280D2B217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF21E03D-664B-447B-B7D7-96C280D2B217}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

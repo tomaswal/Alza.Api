@@ -22,4 +22,8 @@
     <ProjectReference Include="..\Alza.Api.Infrastructure\Alza.Api.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="v2\Controllers\" />
+  </ItemGroup>
+
 </Project>
