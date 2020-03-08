@@ -14,10 +14,12 @@ namespace Alza.Api.Core.Tests.BussinesRule
     public class ProductFacadeTests
     {
         private Mock<IProductRepository> mockProductRepository;
+        private Mock<IUnitOfWork> mockUnitOfWork;
         [TestInitialize]
         public void InitTest()
         {
             mockProductRepository = new Mock<IProductRepository>();
+            mockUnitOfWork = new Mock<IUnitOfWork>();
             //mockProductRepository.Setup(x=> x.FindAll)
         }
         [TestMethod]
@@ -64,7 +66,7 @@ namespace Alza.Api.Core.Tests.BussinesRule
                                     },
                                  };
 
-            var productFacade = new ProductFacade(mockProductRepository.Object);
+            var productFacade = new ProductFacade(mockProductRepository.Object, mockUnitOfWork.Object);
 
             var actualResult = productFacade.GetProductsCollection();
 
@@ -97,7 +99,7 @@ namespace Alza.Api.Core.Tests.BussinesRule
                 Price = 1.1M
             };
 
-            var productFacade = new ProductFacade(mockProductRepository.Object);
+            var productFacade = new ProductFacade(mockProductRepository.Object, mockUnitOfWork.Object);
             var actualResult = productFacade.GetProductById(inputValue);
 
             CompareLogic compareLogic = new CompareLogic();
@@ -110,8 +112,8 @@ namespace Alza.Api.Core.Tests.BussinesRule
         [TestMethod]
         public void GetById_ShouldBeUpdateProductInRepository_ReturnTrue()
         {
-            var productFacade = new ProductFacade(mockProductRepository.Object);
-            var actualResult = productFacade.UpdateProduct(null);
+            var productFacade = new ProductFacade(mockProductRepository.Object, mockUnitOfWork.Object);
+            //var actualResult = productFacade.UpdateProduct(null);
 
             Assert.IsTrue(true);
         }
