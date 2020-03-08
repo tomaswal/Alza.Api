@@ -26,14 +26,14 @@ namespace Alza.Api.Core.BussinessRule
             return productRepository.FindById(id);
         }
 
-        public bool UpdateProduct(Product product)
+        public bool UpdateProductDescription(int productId, string description)
         {
-            var dbProduct = productRepository.FindById(product.Id);
+            if (string.IsNullOrEmpty(description))
+                description = string.Empty;
 
-            dbProduct.Description = product.Description;
-            dbProduct.ImgUri = product.ImgUri;
-            dbProduct.Name = product.Name;
-            dbProduct.Price = product.Price;
+            var dbProduct = productRepository.FindById(productId);
+
+            dbProduct.Description = description;
 
             unitOfWork.SaveChanges();
 

@@ -109,13 +109,37 @@ namespace Alza.Api.Core.Tests.BussinesRule
 
         }
 
-        [TestMethod]
-        public void GetById_ShouldBeUpdateProductInRepository_ReturnTrue()
-        {
-            var productFacade = new ProductFacade(mockProductRepository.Object, mockUnitOfWork.Object);
-            //var actualResult = productFacade.UpdateProduct(null);
+        //[TestMethod]
+        //public void GetById_ShouldBeUpdateProductInRepository_ReturnTrue()
+        //{
+        //    var inputValue = 1;
 
-            Assert.IsTrue(true);
-        }
+        //    mockProductRepository.Setup(x => x.FindById(inputValue))
+        //                         .Returns(new Product
+        //                         {
+        //                             Id = 1,
+        //                             Description = "desc1",
+        //                             ImgUri = "/test1/test1/test1.png",
+        //                             Name = "name1",
+        //                             Price = 1.1M
+        //                         });
+
+        //    var inputProduct = new Product
+        //    {
+        //        Id = 1,
+        //        Description = "desc3",
+        //        ImgUri = "/test1/test1/test3.png",
+        //        Name = "name3",
+        //        Price = 3.3M
+        //    };
+
+        //    var productFacade = new ProductFacade(mockProductRepository.Object, mockUnitOfWork.Object);
+
+        //    var actualResult = productFacade.UpdateProductDescription(inputProduct);
+
+        //    var resulttt = mockProductRepository.Object.FindById(inputValue);
+
+        //    Assert.IsTrue(true);
+        //}
     }
 }
