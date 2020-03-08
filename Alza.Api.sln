@@ -17,6 +17,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Helpers", "Alza.Helper
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Api.Tests", "Alza.Api.Tests\Alza.Api.Tests.csproj", "{CE9285D5-84D6-4C40-B21E-954DF064B855}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{73B5BBC4-37FC-4760-B8B4-33BCFE7A6A70}"
+	ProjectSection(SolutionItems) = preProject
+		readme.txt = readme.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,7 +57,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{B9ECD256-4408-4262-B5A2-2AB22B2929CE} = {73B5BBC4-37FC-4760-B8B4-33BCFE7A6A70}
+		{B27E8B4F-0003-4F04-B40F-EB474262028E} = {73B5BBC4-37FC-4760-B8B4-33BCFE7A6A70}
+		{7442D495-1666-4F6A-80A4-806EEA5CE6D7} = {73B5BBC4-37FC-4760-B8B4-33BCFE7A6A70}
 		{0FE9E140-0489-4613-9A49-43925E633E84} = {14B9B3F8-DD53-40BE-8CFB-74BA93DDCD9B}
+		{CF21E03D-664B-447B-B7D7-96C280D2B217} = {73B5BBC4-37FC-4760-B8B4-33BCFE7A6A70}
 		{CE9285D5-84D6-4C40-B21E-954DF064B855} = {14B9B3F8-DD53-40BE-8CFB-74BA93DDCD9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
