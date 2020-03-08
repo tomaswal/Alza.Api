@@ -5,8 +5,8 @@ namespace Alza.Api.Core.BussinessRule
 {
     public interface IProductFacade
     {
-        ICollection<Product> GetAll();
-        Product GetById(int id);
+        ICollection<Product> GetProductsCollection();
+        Product GetProductById(int id);
         bool Update(Product product);
     }
 }

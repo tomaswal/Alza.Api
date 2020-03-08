@@ -14,12 +14,12 @@ namespace Alza.Api.Core.BussinessRule
         {
             this.productRepository = productRepository;
         }
-        public ICollection<Product> GetAll()
+        public ICollection<Product> GetProductsCollection()
         {
             return productRepository.FindAll().ToList();
         }
 
-        public Product GetById(int id)
+        public Product GetProductById(int id)
         {
             return productRepository.FindById(id);
         }

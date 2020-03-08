@@ -21,7 +21,7 @@ namespace Alza.Api.Core.Tests.BussinesRule
             //mockProductRepository.Setup(x=> x.FindAll)
         }
         [TestMethod]
-        public void GetAll_ShouldReturnSomeProducts()
+        public void GetProductsCollection_ShouldReturnSomeProducts()
         {
             mockProductRepository.Setup(x => x.FindAll())
                                  .Returns(new List<Product>
@@ -66,7 +66,7 @@ namespace Alza.Api.Core.Tests.BussinesRule
 
             var productFacade = new ProductFacade(mockProductRepository.Object);
 
-            var actualResult = productFacade.GetAll();
+            var actualResult = productFacade.GetProductsCollection();
 
             CompareLogic compareLogic = new CompareLogic();
             ComparisonResult comapreResult = compareLogic.Compare(expectedResult, actualResult);
@@ -75,7 +75,7 @@ namespace Alza.Api.Core.Tests.BussinesRule
         }
 
         [TestMethod]
-        public void GetById_ShouldReturnOnlyOneProduct()
+        public void GetProductById_ShouldReturnOnlyOneProduct()
         {
             var inputValue = 1;
             mockProductRepository.Setup(x => x.FindById(inputValue))
@@ -98,7 +98,7 @@ namespace Alza.Api.Core.Tests.BussinesRule
             };
 
             var productFacade = new ProductFacade(mockProductRepository.Object);
-            var actualResult = productFacade.GetById(inputValue);
+            var actualResult = productFacade.GetProductById(inputValue);
 
             CompareLogic compareLogic = new CompareLogic();
             ComparisonResult comapreResult = compareLogic.Compare(expectedResult, actualResult);
