@@ -25,9 +25,9 @@ namespace Alza.Api.v1.Controllers
 
         // GET api/products
         [HttpGet]
-        public ActionResult<IEnumerable<ProductDTO>> Get()
+        public async Task<ActionResult<IEnumerable<ProductDTO>>> Get()
         {
-            var products = productFacade.GetProductsCollection();
+            var products = await productFacade.GetProductsCollection();
             var productsResult = mapper.Map<List<ProductDTO>>(products).AsEnumerable();
 
             return Ok(productsResult);
@@ -45,9 +45,9 @@ namespace Alza.Api.v1.Controllers
 
         // PATCH api/products/5
         [HttpPatch("{id}")]
-        public void Patch(int id, [FromBody] ProductPartialDTO product)
+        public async Task Patch(int id, [FromBody] ProductPartialDTO product)
         {
-            productFacade.UpdateProductDescription(id, product.Description);
+            await productFacade.UpdateProductDescription(id, product.Description);
         }
     }
 }

@@ -7,6 +7,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Alza.Api.Core.Tests.BussinesRule
 {
@@ -22,11 +23,12 @@ namespace Alza.Api.Core.Tests.BussinesRule
             mockUnitOfWork = new Mock<IUnitOfWork>();
             //mockProductRepository.Setup(x=> x.FindAll)
         }
+
         [TestMethod]
-        public void GetProductsCollection_ShouldReturnSomeProducts()
+        public async Task GetProductsCollection_ShouldReturnSomeProducts()
         {
-            mockProductRepository.Setup(x => x.FindAll())
-                                 .Returns(new List<Product>
+            mockProductRepository.Setup(x => x.FindAllAsync())
+                                 .Returns(Task.FromResult(new List<Product>
                                  {
                                     new Product
                                     {
@@ -44,7 +46,7 @@ namespace Alza.Api.Core.Tests.BussinesRule
                                         Name = "name2",
                                         Price = 2.2M
                                     },
-                                 });
+                                 }));
 
             var expectedResult = new List<Product>
                                  {
@@ -68,7 +70,7 @@ namespace Alza.Api.Core.Tests.BussinesRule
 
             var productFacade = new ProductFacade(mockProductRepository.Object, mockUnitOfWork.Object);
 
-            var actualResult = productFacade.GetProductsCollection();
+            var actualResult = await productFacade.GetProductsCollection();
 
             CompareLogic compareLogic = new CompareLogic();
             ComparisonResult comapreResult = compareLogic.Compare(expectedResult, actualResult);
@@ -110,7 +112,7 @@ namespace Alza.Api.Core.Tests.BussinesRule
         }
 
         [TestMethod]
-        public void GetById_ShouldBeUpdateProductInRepository_ReturnTrue()
+        public async Task GetById_ShouldBeUpdateProductDescription_ReturnTrue()
         {
             var inputProductId = 1;
             var inputDesc = "test";
@@ -129,14 +131,14 @@ namespace Alza.Api.Core.Tests.BussinesRule
             {
                 Id = 1,
                 Description = inputDesc,
-                ImgUri = "/test1/test1/test3.png",
-                Name = "name3",
-                Price = 3.3M
+                ImgUri = "/test1/test1/test1.png",
+                Name = "name1",
+                Price = 1.1M
             };
 
             var productFacade = new ProductFacade(mockProductRepository.Object, mockUnitOfWork.Object);
 
-            var actualResult = productFacade.UpdateProductDescription(inputProductId, inputDesc);
+            var actualResult = await productFacade.UpdateProductDescription(inputProductId, inputDesc);
 
             var actualProduct = mockProductRepository.Object.FindById(inputProductId);
 
@@ -146,7 +148,7 @@ namespace Alza.Api.Core.Tests.BussinesRule
 
             Assert.IsTrue(comapreResult.AreEqual);
             Assert.IsTrue(actualResult);
-            mockUnitOfWork.Verify(x => x.SaveChanges(), Times.Once);
+            mockUnitOfWork.Verify(x => x.SaveChangesAsync(), Times.Once);
         }
     }
 }

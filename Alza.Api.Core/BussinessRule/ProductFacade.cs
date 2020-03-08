@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Alza.Api.Core.BussinessRule
 {
@@ -16,9 +17,9 @@ namespace Alza.Api.Core.BussinessRule
             this.productRepository = productRepository;
             this.unitOfWork = unitOfWork;
         }
-        public ICollection<Product> GetProductsCollection()
+        public async Task<List<Product>> GetProductsCollection()
         {
-            return productRepository.FindAll().ToList();
+            return await productRepository.FindAllAsync();
         }
 
         public Product GetProductById(int id)
@@ -26,7 +27,7 @@ namespace Alza.Api.Core.BussinessRule
             return productRepository.FindById(id);
         }
 
-        public bool UpdateProductDescription(int productId, string description)
+        public async Task<bool> UpdateProductDescription(int productId, string description)
         {
             if (string.IsNullOrEmpty(description))
                 description = string.Empty;
@@ -35,7 +36,7 @@ namespace Alza.Api.Core.BussinessRule
 
             dbProduct.Description = description;
 
-            unitOfWork.SaveChanges();
+            await unitOfWork.SaveChangesAsync();
 
             return true;
         }

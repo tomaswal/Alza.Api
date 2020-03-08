@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Alza.Api.Tests.V1.Controllers
 {
@@ -30,10 +31,10 @@ namespace Alza.Api.Tests.V1.Controllers
         }
 
         [TestMethod]
-        public void GetCollection_ShouldReturnCollectionOfProducts()
+        public async Task GetCollection_ShouldReturnCollectionOfProducts()
         {
             mockProductFacade.Setup(x => x.GetProductsCollection())
-                     .Returns(new List<Product>
+                     .Returns(Task.FromResult(new List<Product>
                      {
                                     new Product
                                     {
@@ -51,7 +52,7 @@ namespace Alza.Api.Tests.V1.Controllers
                                         Name = "name2",
                                         Price = 2.2M
                                     },
-                     });
+                     }));
 
             var expectedResult = new List<ProductDTO>
                                  {
@@ -74,7 +75,7 @@ namespace Alza.Api.Tests.V1.Controllers
                                  };
 
             var controller = new ProductsController(mockProductFacade.Object, mapper);
-            var controllerResult = controller.Get();
+            var controllerResult = await controller.Get();
 
             var actualResult = ObjectConvert.GetOkObject<IEnumerable<ProductDTO>>(controllerResult.Result);
 
@@ -120,12 +121,12 @@ namespace Alza.Api.Tests.V1.Controllers
         }
 
         [TestMethod]
-        public void Patch_ShouldReturnCollectionOfProducts()
+        public async Task Patch_ShouldReturnCollectionOfProducts()
         {
             var inputId = 1;
             var inputDesc = "test";
             var controller = new ProductsController(mockProductFacade.Object, mapper);
-            controller.Patch(inputId, new ProductPartialDTO { Description = inputDesc });
+            await controller.Patch(inputId, new ProductPartialDTO { Description = inputDesc });
 
             mockProductFacade.Verify(x => x.UpdateProductDescription(inputId, inputDesc), Times.Once);
         }

@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Alza.Api.Core.DomainModel;
 
 namespace Alza.Api.Core.BussinessRule
 {
     public interface IProductFacade
     {
-        ICollection<Product> GetProductsCollection();
+        Task<List<Product>> GetProductsCollection();
         Product GetProductById(int id);
-        bool UpdateProductDescription(int productId, string description);
+        Task<bool> UpdateProductDescription(int productId, string description);
     }
 }
