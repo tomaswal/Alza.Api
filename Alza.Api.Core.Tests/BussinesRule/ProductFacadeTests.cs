@@ -109,37 +109,44 @@ namespace Alza.Api.Core.Tests.BussinesRule
 
         }
 
-        //[TestMethod]
-        //public void GetById_ShouldBeUpdateProductInRepository_ReturnTrue()
-        //{
-        //    var inputValue = 1;
+        [TestMethod]
+        public void GetById_ShouldBeUpdateProductInRepository_ReturnTrue()
+        {
+            var inputProductId = 1;
+            var inputDesc = "test";
 
-        //    mockProductRepository.Setup(x => x.FindById(inputValue))
-        //                         .Returns(new Product
-        //                         {
-        //                             Id = 1,
-        //                             Description = "desc1",
-        //                             ImgUri = "/test1/test1/test1.png",
-        //                             Name = "name1",
-        //                             Price = 1.1M
-        //                         });
+            mockProductRepository.Setup(x => x.FindById(inputProductId))
+                                 .Returns(new Product
+                                 {
+                                     Id = 1,
+                                     Description = "desc1",
+                                     ImgUri = "/test1/test1/test1.png",
+                                     Name = "name1",
+                                     Price = 1.1M
+                                 });
 
-        //    var inputProduct = new Product
-        //    {
-        //        Id = 1,
-        //        Description = "desc3",
-        //        ImgUri = "/test1/test1/test3.png",
-        //        Name = "name3",
-        //        Price = 3.3M
-        //    };
+            var expectedProduct = new Product
+            {
+                Id = 1,
+                Description = inputDesc,
+                ImgUri = "/test1/test1/test3.png",
+                Name = "name3",
+                Price = 3.3M
+            };
 
-        //    var productFacade = new ProductFacade(mockProductRepository.Object, mockUnitOfWork.Object);
+            var productFacade = new ProductFacade(mockProductRepository.Object, mockUnitOfWork.Object);
 
-        //    var actualResult = productFacade.UpdateProductDescription(inputProduct);
+            var actualResult = productFacade.UpdateProductDescription(inputProductId, inputDesc);
 
-        //    var resulttt = mockProductRepository.Object.FindById(inputValue);
+            var actualProduct = mockProductRepository.Object.FindById(inputProductId);
 
-        //    Assert.IsTrue(true);
-        //}
+            
+            CompareLogic compareLogic = new CompareLogic();
+            ComparisonResult comapreResult = compareLogic.Compare(expectedProduct, actualProduct);
+
+            Assert.IsTrue(comapreResult.AreEqual);
+            Assert.IsTrue(actualResult);
+            mockUnitOfWork.Verify(x => x.SaveChanges(), Times.Once);
+        }
     }
 }
