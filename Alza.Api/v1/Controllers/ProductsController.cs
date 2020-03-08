@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Alza.Api.Core.BussinessRule;
+using Alza.Api.v1.DTO;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Alza.Api.v1.Controllers
@@ -11,22 +14,33 @@ namespace Alza.Api.v1.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        public ProductsController()
-        {
+        private readonly IProductFacade productFacade;
+        private readonly IMapper mapper;
 
+        public ProductsController(IProductFacade productFacade, IMapper mapper)
+        {
+            this.productFacade = productFacade;
+            this.mapper = mapper;
         }
+
         // GET api/products
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<ProductDTO>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var products = productFacade.GetProductsCollection();
+            var productsResult = mapper.Map<List<ProductDTO>>(products).AsEnumerable();
+
+            return Ok(productsResult);
         }
 
         // GET api/products/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<ProductDTO> Get(int id)
         {
-            return "value";
+            var product = productFacade.GetProductById(id);
+            var productResult = mapper.Map<ProductDTO>(product);
+
+            return Ok(productResult);
         }
 
         // PUT api/products/5

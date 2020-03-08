@@ -8,11 +8,13 @@ using Alza.Api.Core.BussinessRule;
 using Alza.Api.Core.Repository;
 using Alza.Api.Infrastructure;
 using Alza.Api.Infrastructure.Repository;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -32,7 +34,13 @@ namespace Alza.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<AppDbContext>(cfg =>
+            {
+                cfg.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
+            });
 
             services.AddMvcCore()
                 .AddJsonFormatters()
@@ -68,11 +76,11 @@ namespace Alza.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApiVersionDescriptionProvider provider)
         {
 
-            //using (var scope = app.ApplicationServices.CreateScope())
-            //{
-            //    var identityAppContext = scope.ServiceProvider.GetService<AppDbContext>();
-            //    identityAppContext.Database.Migrate();
-            //}
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var identityAppContext = scope.ServiceProvider.GetService<AppDbContext>();
+                identityAppContext.Database.Migrate();
+            }
 
             if (env.IsDevelopment())
             {
