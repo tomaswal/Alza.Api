@@ -10,9 +10,11 @@ namespace Alza.Api.Core.BussinessRule
     public class ProductFacade : IProductFacade
     {
         private readonly IProductRepository productRepository;
-        public ProductFacade(IProductRepository productRepository)
+        private readonly IUnitOfWork unitOfWork;
+        public ProductFacade(IProductRepository productRepository, IUnitOfWork unitOfWork)
         {
             this.productRepository = productRepository;
+            this.unitOfWork = unitOfWork;
         }
         public ICollection<Product> GetProductsCollection()
         {
@@ -24,8 +26,17 @@ namespace Alza.Api.Core.BussinessRule
             return productRepository.FindById(id);
         }
 
-        public bool Update(Product product)
+        public bool UpdateProduct(Product product)
         {
+            var dbProduct = productRepository.FindById(product.Id);
+
+            dbProduct.Description = product.Description;
+            dbProduct.ImgUri = product.ImgUri;
+            dbProduct.Name = product.Name;
+            dbProduct.Price = product.Price;
+
+            unitOfWork.SaveChanges();
+
             return true;
         }
     }

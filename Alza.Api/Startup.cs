@@ -98,6 +98,7 @@ namespace Alza.Api
 
         private void RegisterAppClases(IServiceCollection services)
         {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IProductRepository, FakeProductRepository>();
             services.AddScoped<IProductFacade, ProductFacade>();
         }

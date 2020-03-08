@@ -111,7 +111,7 @@ namespace Alza.Api.Core.Tests.BussinesRule
         public void GetById_ShouldBeUpdateProductInRepository_ReturnTrue()
         {
             var productFacade = new ProductFacade(mockProductRepository.Object);
-            var actualResult = productFacade.Update(null);
+            var actualResult = productFacade.UpdateProduct(null);
 
             Assert.IsTrue(true);
         }
