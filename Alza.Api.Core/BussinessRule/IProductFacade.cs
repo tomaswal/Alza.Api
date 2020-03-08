@@ -7,6 +7,6 @@ namespace Alza.Api.Core.BussinessRule
     {
         ICollection<Product> GetAll();
         Product GetById(int id);
-        bool Update();
+        bool Update(Product product);
     }
 }

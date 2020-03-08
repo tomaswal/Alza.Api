@@ -74,6 +74,46 @@ namespace Alza.Api.Core.Tests.BussinesRule
             Assert.IsTrue(comapreResult.AreEqual);
         }
 
-        //public void GetById_ShouldReturnOnlyOneProduct
+        [TestMethod]
+        public void GetById_ShouldReturnOnlyOneProduct()
+        {
+            var inputValue = 1;
+            mockProductRepository.Setup(x => x.FindById(inputValue))
+                     .Returns(new Product
+                     {
+                         Id = 1,
+                         Description = "desc1",
+                         ImgUri = "/test1/test1/test1.png",
+                         Name = "name1",
+                         Price = 1.1M
+                     });
+
+            var expectedResult = new Product
+            {
+                Id = 1,
+                Description = "desc1",
+                ImgUri = "/test1/test1/test1.png",
+                Name = "name1",
+                Price = 1.1M
+            };
+
+            var productFacade = new ProductFacade(mockProductRepository.Object);
+            var actualResult = productFacade.GetById(inputValue);
+
+            CompareLogic compareLogic = new CompareLogic();
+            ComparisonResult comapreResult = compareLogic.Compare(expectedResult, actualResult);
+
+            Assert.IsTrue(comapreResult.AreEqual);
+
+        }
+
+        [TestMethod]
+        public void GetById_ShouldBeUpdateProductInRepository_ReturnTrue()
+        {
+            var productFacade = new ProductFacade(mockProductRepository.Object);
+            var actualResult = productFacade.Update(null);
+
+            Assert.IsTrue(true);
+        }
     }
 }

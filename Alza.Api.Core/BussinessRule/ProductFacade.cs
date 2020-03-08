@@ -21,10 +21,10 @@ namespace Alza.Api.Core.BussinessRule
 
         public Product GetById(int id)
         {
-            return null;
+            return productRepository.FindById(id);
         }
 
-        public bool Update()
+        public bool Update(Product product)
         {
             return true;
         }
