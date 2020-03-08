@@ -43,10 +43,11 @@ namespace Alza.Api.v1.Controllers
             return Ok(productResult);
         }
 
-        // PUT api/products/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PATCH api/products/5
+        [HttpPatch("{id}")]
+        public void Patch(int id, [FromBody] ProductPartialDTO product)
         {
+            productFacade.UpdateProductDescription(id, product.Description);
         }
     }
 }
