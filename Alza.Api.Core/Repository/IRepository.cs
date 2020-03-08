@@ -10,6 +10,7 @@ namespace Alza.Api.Core.Repository
     {
         ICollection<T> FindAll();
         T FindById(K id);
+        void Add(T entity);
         void Remove(T entity);
     }
 }

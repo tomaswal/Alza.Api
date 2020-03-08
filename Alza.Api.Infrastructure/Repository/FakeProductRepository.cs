@@ -9,6 +9,10 @@ namespace Alza.Api.Infrastructure.Repository
 {
     public class FakeProductRepository : IProductRepository
     {
+        public void Add(Product entity)
+        {
+        }
+
         public ICollection<Product> FindAll()
         {
             var result = new List<Product>();

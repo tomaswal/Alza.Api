@@ -15,6 +15,11 @@ namespace Alza.Api.Infrastructure.Repository
             this.appDbContext = appDbContext;
         }
 
+        public void Add(Product entity)
+        {
+            appDbContext.Products.Add(entity);
+        }
+
         public ICollection<Product> FindAll()
         {
             return appDbContext.Products.ToList();
