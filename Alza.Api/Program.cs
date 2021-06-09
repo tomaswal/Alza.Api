@@ -12,6 +12,7 @@ namespace Alza.Api
 {
     public class Program
     {
+        //Test comment
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
